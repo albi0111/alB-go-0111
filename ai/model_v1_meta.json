@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "n_samples": 1037,
+  "accuracy": 0.4375,
+  "precision": 0.093,
+  "recall": 1.0,
+  "f1": 0.1702,
+  "cv_mean": 0.0,
+  "cv_std": 0.0,
+  "top_features": [
+    [
+      "rsi",
+      0.3313
+    ],
+    [
+      "ema_diff_pct",
+      0.1847
+    ],
+    [
+      "atr_val",
+      0.1548
+    ],
+    [
+      "bullish_score",
+      0.0648
+    ],
+    [
+      "bearish_score",
+      0.0453
+    ]
+  ],
+  "trained_at": "2026-03-27T03:06:06.838190",
+  "promoted": true
+}

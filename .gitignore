@@ -1,0 +1,48 @@
+# Nifty Options Algo Trader — .gitignore
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+pip-wheel-metadata/
+
+# ── Environments ──────────────────────────────────────────────────────────────
+.env
+venv/
+.venv/
+env/
+ENV/
+
+# ── Database ──────────────────────────────────────────────────────────────────
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+logs/*.log
+logs/*.log.gz
+logs/*.zip
+
+# ── AI Model ─────────────────────────────────────────────────────────────────
+ai/model.joblib
+
+# ── Runtime State ─────────────────────────────────────────────────────────────
+.algo_state
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ── Testing ───────────────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
