@@ -320,6 +320,17 @@ def simulate_day(
         # ── Update & Exit Management ──────────────────────────────────────────
         prev_pnl_before_update = om.daily_pnl
         
+        # Regime Context from Merged Data
+        regime = MarketRegime(
+            type             = row["type"],
+            adx              = row["adx"],
+            volatility       = row["volatility"],
+            use_trailing_sl  = row["use_trailing_sl"],
+            exit_tolerance   = row["exit_tolerance"],
+            signal_threshold = row["signal_threshold"]
+        )
+        
+        
         # Build mock quotes for update
         mock_quotes = {
             "SIMULATED": {"ltp": spot, "bid": spot, "ask": spot}
@@ -357,17 +368,7 @@ def simulate_day(
         # Use our final decision flag
         if not final_decision: continue
 
-        # Regime Context from Merged Data
-        regime = MarketRegime(
-            type             = row["type"],
-            adx              = row["adx"],
-            volatility       = row["volatility"],
-            use_trailing_sl  = row["use_trailing_sl"],
-            exit_tolerance   = row["exit_tolerance"],
-            signal_threshold = row["signal_threshold"]
-        )
-
-        # Build Mock Option
+        # Build mock Option
         premium = max(atr * 2, 50.0)
         sl_points = abs(signal.spot_price - signal.stop_loss)
         lots = om.calculate_institutional_lots(
