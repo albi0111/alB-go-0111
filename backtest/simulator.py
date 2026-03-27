@@ -319,16 +319,16 @@ def simulate_day(
         # Position Management
         # ── Update & Exit Management ──────────────────────────────────────────
         prev_pnl_before_update = om.daily_pnl
+        
+        # Build mock quotes for update
+        mock_quotes = {
+            "SIMULATED": {"ltp": spot, "bid": spot, "ask": spot}
+        }
+        
         exit_reasons = om.update(
-            current_spot   = spot,
-            atr_value      = atr,
-            vwap           = row["vwap"],
-            vol_trend      = row["vol_trend"],
-            adx_val        = row["adx"],
-            breakout_high  = row["brk_high"],
-            breakout_low   = row["brk_low"],
-            bullish_score  = signal.bullish_score,
-            bearish_score  = signal.bearish_score,
+            quotes = mock_quotes,
+            signal = signal,
+            regime = regime
         )
         
         if exit_reasons:
@@ -614,8 +614,6 @@ def run_simulation(
 
     # ── Phase 2: Filter Impact Analysis ─────────────────────────────────────────
     if all_rejected:
-        from rich.table import Table
-        from rich import box
         impact_table = Table(title="Filter Rejection Breakdown", box=box.ROUNDED)
         # Sort by score (strongest signals that didn't enter)
         all_rejected.sort(key=lambda x: x["score"], reverse=True)
